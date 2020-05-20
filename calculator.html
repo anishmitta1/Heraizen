@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <a class="navbar-brand" href="main.html">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="profile.html">Profile<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="ipl.html">IPL</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="calculator.html">Calculator</a>
+                </li>
+              </ul>
+            </div>
+          </nav>  
+        </div>
+           <div class="row mt-1" id="ip" style = "width: 500px; position:fixed; left:100px;">
+               <div class="col-md-3">
+                   <input type="text" class="form-control" placeholder="Enter a number" id="tableinput" style="width: 300px;">
+                   <button class="btn btn-primary" onclick="tables()">Tables</button>
+                   <button class="btn btn-primary" onclick="reverse()">Reverse</button>
+                   <button class="btn btn-primary" onclick="pal()">Palindrome</button>
+                   <button class="btn btn-primary" onclick="arm()">Armstrong</button>
+                   <button class="btn btn-primary" onclick="prime()">Prime Factors</button>
+                   <div id="result"></div>
+               </div>
+           </div> 
+
+           <div class="form-group" style="position: fixed; top: 60px; right: 300px; width: 500px;">
+            <div class="col-md-3">
+                <input type="text" style="width: 300px;"; class="form-control" placeholder="Enter first number" id="input1" size="40px">
+                <input type="text" style="width: 300px;"; class="form-control" placeholder="Enter second number" id="input2" size="40px">
+                <div class="row mt-2">
+                    <button class="btn btn-primary" onclick="addNumbers()">+</button>
+                    <button class="btn btn-primary" onclick="subNumbers()">-</button>
+                    <button class="btn btn-primary" onclick="mulNumbers()">*</button>
+                    <button class="btn btn-primary" onclick="divNumbers()">/</button>
+                    <button class="btn btn-primary" onclick="modNumbers()">%</button>
+                    <button class="btn btn-primary" onclick="incNumbers()">++</button>
+                    <button class="btn btn-primary" onclick="decNumbers()">--</button>
+                </div>
+                <div id="output" ></div>
+            </div>
+           <script>
+                result = document.querySelector("#result")
+                output = document.querySelector("#output")
+
+                function reverse() {
+                    num = document.getElementById("tableinput").value;
+                    num = Number.parseInt(num)
+                    var temp = num;
+                    count = 0;
+                    while(temp!=0)
+                    {
+                        count++;
+                        temp = parseInt(temp/10);
+                    }
+                    var face = 10**count;
+                    var num1 = 0;
+                    num1 = 0;
+                    while(num!=0)
+                    {
+                        num1 = num1 + ( num % 10 ) * face;
+                        face = face / 10;
+                        num = parseInt(num/10);
+                    }
+                    num1 = num1 / 10;
+                    str = `${num1}`;
+                    result.innerHTML = str
+                    // alert(face)
+                }
+                function pal() {
+                    num = document.getElementById("tableinput").value;
+                    num = Number.parseInt(num)
+                    var fin = num;
+                    var temp = num;
+                    count = 0;
+                    while(temp!=0)
+                    {
+                        count++;
+                        temp = parseInt(temp/10);
+                    }
+                    var face = 10**count;
+                    var num1 = 0;
+                    num1 = 0;
+                    while(num!=0)
+                    {
+                        num1 = num1 + ( num % 10 ) * face;
+                        face = face / 10;
+                        num = parseInt(num/10);
+                    }
+                    str = "";
+                    num1 = num1 / 10;
+                    if(fin===num1)
+                    str = "It is a palindrome";
+                    else
+                    str = "It isnt a palindrome";
+                    result.innerHTML = str;
+                }
+                function arm() {
+                    num = document.getElementById("tableinput").value;
+                    num = Number.parseInt(num)
+                    var e,x,d=0;
+                    var b=num
+                    x=b;
+                    while(x>0)
+                    {
+                    e=x%10;
+                    d=d+(e*e*e);
+                    x=parseInt(x/10);
+                    }
+                    str = "";
+                    if(b===d)
+                    str = "Amstrong number";
+                    else
+                    str = "Not an Amstrong number";
+                    result.innerHTML = str
+                }
+                function tables() {
+                    num = document.getElementById("tableinput").value;
+                    num = Number.parseInt(num)
+                    let str = "";
+                    let i=1;
+                    for(i=1;i<=10;i++)
+                    {
+                        str += `${num} * ${i} = ${num*i} <br>`;
+                        result.innerHTML = str;
+                    }
+                }
+                function prime() {
+                    num = document.getElementById("tableinput").value;
+                    num = Number.parseInt(num)
+                    function is_prime(num) {
+                        for (let i = 2; i <= Math.sqrt(num); i++)
+                            {
+                                if (num % i === 0) return false;
+                            }
+                        return true;
+                    }   
+                    //alert(is_prime(num))
+                    str = "";
+                    let i=1;
+                    for(i=1;i<=num;i++)
+                    {
+                        if(is_prime(i))
+                        {
+                            if(num%i == 0)
+                            {
+                                str += `${i} `
+                            }
+                        }
+                    }
+                    result.innerHTML = str;
+                }
+               function addNumbers() {  
+                   num1 = document.getElementById("input1").value;
+                   num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) + Number.parseInt(num2)
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+               function subNumbers() {  
+                   let num1 = document.getElementById("input1").value;
+                   let num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) - Number.parseInt(num2)
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+               function mulNumbers() {  
+                   let num1 = document.getElementById("input1").value;
+                   let num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) * Number.parseInt(num2)
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+               function divNumbers() {  
+                   let num1 = document.getElementById("input1").value;
+                   let num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) / Number.parseInt(num2)
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+               function modNumbers() {  
+                   let num1 = document.getElementById("input1").value;
+                   let num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) % Number.parseInt(num2)
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+               function incNumbers() {  
+                   let num1 = document.getElementById("input1").value;
+                   let num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) + 1
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+               function decNumbers() {  
+                   let num1 = document.getElementById("input1").value;
+                   let num2 = document.getElementById("input2").value;
+                   val = Number.parseInt(num1) - 1
+                   str = `Result is ${val}`;
+                   output.innerHTML = str;
+               }
+
+
+
+
+           </script>
+    </body>
+</html>
